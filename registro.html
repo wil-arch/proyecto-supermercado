@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- ============================================ -->
+<!-- PAGINA DE REGISTRO (registro.html) -->
+<!-- ============================================ -->
+
+<html lang="es">
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilderika Market</title>
+    <!-- Enlazar archivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+
+        <!-- Encabezado con título -->
+        <div class="header">
+            <h1>Wilderika Market</h1>
+            <p>Sistema de Registro</p>
+        </div>
+
+        <!-- Título de la sección -->
+        <h2>Registro de Usuario</h2>
+
+        <!-- Campo para ingresar el nombre -->
+        <input type="text" id="nombreUsuario" placeholder="Nombre">
+        
+        <!-- Campo para ingresar el email -->
+        <input type="email" id="emailUsuario" placeholder="Email">
+        
+        <!-- Campo para ingresar la contraseña -->
+        <input type="password" id="passwordUsuario" placeholder="Contraseña">
+
+        <!-- Botón para registrar usuario (llama a la función registrarUsuario()) -->
+        <button onclick="registrarUsuario()">Registrarse</button>
+
+        <!-- Elemento para mostrar mensajes de error/éxito -->
+        <p id="mensaje"></p>
+
+        <!-- Enlace para ir a la página de login -->
+        <p>¿Ya tienes cuenta?</p>
+        <button onclick="irLogin()">Ir a Login</button>
+
+    </div>
+
+    <!-- Enlazar archivo JavaScript con las funciones -->
+    <script src="script.js"></script>
+
+</body>
+</html>

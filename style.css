@@ -1,0 +1,231 @@
+/* ============================================ */
+/* ESTILOS GENERALES DEL PROYECTO */
+/* ============================================ */
+
+/* FONDO ANIMADO - Gradiente de colores en movimiento */
+body {
+    /* Fuente de texto */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Fondo con gradiente de 4 colores */
+    background: linear-gradient(-45deg, #ff416c, #ff4b2b, #6a11cb, #2575fc);
+    /* Tamaño del fondo más grande para la animación */
+    background-size: 400% 400%;
+    /* Animación del fondo */
+    animation: fondoAnimado 8s ease infinite;
+
+    /* Eliminar márgenes por defecto */
+    margin: 0;
+    /* Permitir scroll cuando el contenido sea largo */
+    min-height: 100vh;
+    /* Padding para que el contenido no pegue en los bordes */
+    padding: 20px 0;
+    /* Box sizing global */
+    box-sizing: border-box;
+}
+
+/* Animación del fondo - Cambia la posición del gradiente */
+@keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* CONTENEDOR PRINCIPAL - Caja blanca con bordes redondeados */
+.container {
+    /* Ancho completo hasta 420px */
+    width: 100%;
+    max-width: 420px;
+    /* Fondo blanco semi-transparente */
+    background: rgba(255, 255, 255, 0.95);
+    /* Espaciado interno */
+    padding: 35px;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Sombra suave */
+    box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+    /* Centrar texto */
+    text-align: center;
+    /* Centrar contenedor horizontalmente */
+    margin: 0 auto;
+    /* Transición suave */
+    transition: 0.3s;
+}
+
+/* Efecto hover en el contenedor */
+.container:hover {
+    /* Pequeño aumento de tamaño */
+    transform: scale(1.02);
+}
+
+/* HEADER - Título principal */
+.header h1 {
+    /* Tamaño de fuente grande */
+    font-size: 28px;
+    /* Gradiente en el texto */
+    background: linear-gradient(45deg, #ff416c, #2575fc);
+    /* Recortar el fondo al texto (compatibilidad multiplataforma) */
+    -webkit-background-clip: text; /* Safari/Chrome */
+    background-clip: text;         /* Estándar */
+    -webkit-text-fill-color: transparent;
+    /* Espaciado inferior */
+    margin-bottom: 5px;
+}
+
+.header p {
+    /* Color de texto gris */
+    color: #555;
+    /* Tamaño de fuente pequeño */
+    font-size: 14px;
+    /* Espaciado inferior */
+    margin-bottom: 20px;
+}
+
+/* INPUTS - Campos de texto */
+input {
+    /* Ancho completo */
+    width: 100%;
+    /* Espaciado interno */
+    padding: 12px;
+    /* Margen entre campos */
+    margin: 8px 0;
+    /* Bordes redondeados */
+    border-radius: 10px;
+    /* Borde transparente por defecto */
+    border: 2px solid transparent;
+    /* Fondo gris claro */
+    background: #f1f1f1;
+    /* Transición suave */
+    transition: 0.3s;
+    /* Incluir padding en el ancho */
+    box-sizing: border-box;
+}
+
+/* Focus moderno - Cuando el usuario hace clic en un input */
+input:focus {
+    /* Borde morado */
+    border: 2px solid #6a11cb;
+    /* Fondo blanco */
+    background: #fff;
+    /* Sombra morada brillante */
+    box-shadow: 0 0 10px rgba(106,17,203,0.5);
+    /* Quitar borde por defecto */
+    outline: none;
+}
+
+/* BOTONES */
+button {
+    /* Ancho completo */
+    width: 100%;
+    /* Espaciado interno */
+    padding: 12px;
+    /* Margen superior */
+    margin-top: 10px;
+    /* Sin borde */
+    border: none;
+    /* Bordes redondeados */
+    border-radius: 10px;
+    /* Gradiente de colores */
+    background: linear-gradient(45deg, #ff416c, #2575fc);
+    /* Texto blanco */
+    color: white;
+    /* Tamaño de fuente */
+    font-size: 16px;
+    /* Cursor de mano */
+    cursor: pointer;
+    /* Transición suave */
+    transition: 0.3s;
+}
+
+/* Hover botón - Efecto al pasar el mouse */
+button:hover {
+    /* Aumentar tamaño ligeramente */
+    transform: scale(1.05);
+    /* Sombra más grande */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* MENSAJES - Texto de errores y éxitos */
+#mensaje {
+    /* Margen superior */
+    margin-top: 10px;
+    /* Texto en negrita */
+    font-weight: bold;
+    /* Color de texto oscuro */
+    color: #2c3e50;
+}
+
+/* BUSCADOR - Espacio extra abajo */
+#buscador {
+    margin-bottom: 15px;
+}
+
+/* CONTADORES - Títulos h4 */
+h4 {
+    /* Margen superior */
+    margin-top: 15px;
+    /* Color de texto */
+    color: #333;
+}
+
+/* LISTA - Estilos de la lista de productos */
+ul {
+    /* Quitar viñetas */
+    list-style: none;
+    /* Quitar padding por defecto */
+    padding: 0;
+    /* Margen superior */
+    margin-top: 15px;
+}
+
+/* ITEM PRODUCTO - Cada producto en la lista */
+li {
+    /* Fondo con gradiente suave */
+    background: linear-gradient(45deg, #f8f9fa, #e3e6ff);
+    /* Margen entre productos */
+    margin: 10px 0;
+    /* Espaciado interno */
+    padding: 15px;
+    /* Bordes redondeados */
+    border-radius: 12px;
+    /* Transición suave */
+    transition: 0.3s;
+
+    /* Diseño flexible en columna */
+    display: flex;
+    flex-direction: column;
+    /* Espacio entre elementos */
+    gap: 8px;
+}
+
+/* Hover item - Efecto al pasar el mouse sobre un producto */
+li:hover {
+    /* Mover ligeramente hacia arriba */
+    transform: translateY(-5px);
+    /* Sombra más grande */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* BOTONES INTERNOS - Botones de editar y eliminar dentro de cada producto */
+li button {
+    /* Márgenes pequeños */
+    margin: 5px 3px;
+    /* Espaciado interno reducido */
+    padding: 6px 10px;
+    /* Fuente más pequeña */
+    font-size: 13px;
+    /* Ancho automático */
+    width: auto;
+    /* Bordes pequeños */
+    border-radius: 6px;
+}
+
+/* EDITAR - Color del botón de editar (azul) */
+li button:first-of-type {
+    background: linear-gradient(45deg, #36d1dc, #5b86e5);
+}
+
+/* ELIMINAR - Color del botón de eliminar (rojo) */
+li button:last-of-type {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}

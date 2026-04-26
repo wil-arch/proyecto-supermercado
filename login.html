@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- ============================================ -->
+<!-- PAGINA DE LOGIN (login.html) -->
+<!-- ============================================ -->
+
+<html lang="es">
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilderika Market</title>
+    <!-- Enlazar archivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+
+        <!-- Encabezado con título -->
+        <div class="header">
+            <h1>Wilderika Market</h1>
+            <p>Inicio de Sesión</p>
+        </div>
+
+        <!-- Título de la sección -->
+        <h2>Login</h2>
+
+        <!-- Campo para ingresar el email -->
+        <input type="email" id="email" placeholder="Email">
+        
+        <!-- Campo para ingresar la contraseña -->
+        <input type="password" id="password" placeholder="Contraseña">
+
+        <!-- Botón para iniciar sesión (llama a la función login()) -->
+        <button onclick="login()">Ingresar</button>
+
+        <!-- Elemento para mostrar mensajes de error/éxito -->
+        <p id="mensaje"></p>
+
+        <!-- Enlace para ir a la página de registro -->
+        <p>¿No tienes cuenta?</p>
+        <button onclick="irRegistro()">Registrarse</button>
+
+    </div>
+
+    <!-- Enlazar archivo JavaScript con las funciones -->
+    <script src="login.js"></script>
+
+</body>
+</html>
