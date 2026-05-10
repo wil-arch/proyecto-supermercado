@@ -30,14 +30,24 @@
         </div>
 
         <!-- Mensaje (usuarios) -->
-        <div id="seccionUsuario" style="display:none;">
+        <div id="seccionUsuario">
             <p id="mensajeUsuario"></p>
         </div>
 
+        <!-- Métricas (admin/inventario). En usuario se ocultan a nivel lógico (valores 0) -->
         <h4>Total productos: <span id="totalProductos">0</span></h4>
         <h4>Total inventario: $<span id="totalValor">0</span></h4>
 
+        <!-- Catálogo (admin con cantidad; usuario sin cantidad) -->
         <ul id="listaProductos"></ul>
+
+        <!-- Carrito (solo usuario) -->
+        <div id="seccionCarrito">
+            <h4>Tu carrito</h4>
+            <h4>Total productos en carrito: <span id="totalProductosUsuario">0</span></h4>
+            <h4>Total precio: $<span id="totalPrecioUsuario">0</span></h4>
+            <ul id="listaProductosUsuario"></ul>
+        </div>
 
         <button onclick="cerrarSesion()">Cerrar sesión</button>
 

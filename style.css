@@ -160,6 +160,11 @@ button:hover {
     margin-bottom: 15px;
 }
 
+/* SECCIÓN DE USUARIO - Ocultar por defecto y mostrar según rol */
+#seccionUsuario {
+    display: none;
+}
+
 /* CONTADORES - Títulos h4 */
 h4 {
     /* Margen superior */
