@@ -297,13 +297,33 @@ function comprarProducto(id) {
 function eliminarDelCarrito(productoId) {
     if (esAdministrador()) return; // solo usuario
 
-    carrito = (JSON.parse(localStorage.getItem("carrito")) || []).filter(it => it.productoId != productoId);
+    // 1) Encontrar cantidad del item para revertir al inventario
+    let productos = JSON.parse(localStorage.getItem("productos")) || [];
+    let producto = productos.find(p => p.id == productoId);
+    if (producto) {
+        let item = (carrito || []).find(it => it.productoId == productoId);
+        let cantidadDevuelta = item ? Number(item.cantidad) || 0 : 0;
+
+        // 2) Sumar de vuelta al inventario (cantidad se resta al comprar)
+        if (cantidadDevuelta > 0) {
+            let nuevaCantidad = Number(producto.cantidad) + cantidadDevuelta;
+            productos = productos.map(p => {
+                if (p.id == productoId) return { ...p, cantidad: nuevaCantidad };
+                return p;
+            });
+            localStorage.setItem("productos", JSON.stringify(productos));
+        }
+    }
+
+    // 3) Quitar del carrito
+    carrito = (JSON.parse(localStorage.getItem("carrito")) || [])
+        .filter(it => it.productoId != productoId);
     guardarCarrito();
 
-    // No devolvemos cantidad a inventario (para simplificar)
     mostrarCarritoUsuario();
     mostrarCatalogoUsuario();
 }
+
 
 // ============================================
 // BUSCAR PRODUCTO (catálogo/lista)
