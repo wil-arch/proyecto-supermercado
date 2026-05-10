@@ -28,12 +28,23 @@
 
         <!-- Campo para ingresar el nombre -->
         <input type="text" id="nombreUsuario" placeholder="Nombre">
-        
+
         <!-- Campo para ingresar el email -->
         <input type="email" id="emailUsuario" placeholder="Email">
-        
+
         <!-- Campo para ingresar la contraseña -->
         <input type="password" id="passwordUsuario" placeholder="Contraseña">
+
+        <!-- ROLES -->
+        <h3>Selecciona rol</h3>
+        <label>
+            <input type="radio" name="rolUsuario" value="usuario" checked>
+            Usuario (solo comprar)
+        </label>
+        <label>
+            <input type="radio" name="rolUsuario" value="administrador">
+            Administrador (puede modificar)
+        </label>
 
         <!-- Botón para registrar usuario (llama a la función registrarUsuario()) -->
         <button onclick="registrarUsuario()">Registrarse</button>
@@ -52,3 +63,4 @@
 
 </body>
 </html>
+

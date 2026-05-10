@@ -28,12 +28,17 @@ function registrarUsuario() {
         return;
     }
 
-    // Crear un nuevo objeto usuario con ID único
+    // Leer rol seleccionado (usuario/admin). Fallback a usuario.
+    let rol = document.querySelector('input[name="rolUsuario"]:checked')?.value;
+    if (!rol) rol = "usuario";
+
+    // Crear un nuevo objeto usuario con ID único basado en la fecha actual
     let nuevoUsuario = {
         id: Date.now(), // ID único basado en la fecha actual
         nombre,
         email,
-        password
+        password,
+        rol
     };
 
     // Agregar el nuevo usuario al array
@@ -49,6 +54,10 @@ function registrarUsuario() {
     document.getElementById("nombreUsuario").value = "";
     document.getElementById("emailUsuario").value = "";
     document.getElementById("passwordUsuario").value = "";
+
+    // (Opcional) Seleccionar por defecto usuario
+    let defaultRol = document.querySelector('input[name="rolUsuario"][value="usuario"]');
+    if (defaultRol) defaultRol.checked = true;
 }
 
 // ============================================
@@ -60,5 +69,4 @@ function irLogin() {
     // Redireccionar a la página de login
     window.location.href = "login.html";
 }
-
 

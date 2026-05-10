@@ -19,9 +19,12 @@ function login() {
 
     // Si encuentra el usuario, iniciar sesión
     if (usuario) {
+        // Fallback para usuarios antiguos sin rol
+        if (!usuario.rol) usuario.rol = "usuario";
+
         // Guardar la sesión activa en localStorage
         localStorage.setItem("sesionActiva", JSON.stringify(usuario));
-        
+
         // Mostrar mensaje de bienvenida
         mensaje.textContent = "Bienvenido " + usuario.nombre;
 
@@ -45,3 +48,4 @@ function irRegistro() {
     // Redireccionar a la página de registro
     window.location.href = "registro.html";
 }
+

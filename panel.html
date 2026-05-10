@@ -4,51 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wilderika Market</title>
-    <!-- Enlazar archivo de estilos CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Contenedor principal -->
     <div class="container">
 
-        <!-- Encabezado con título -->
         <div class="header">
             <h1>🛒 Wilderika Market</h1>
             <p>Panel de Inventario</p>
         </div>
 
-        <!-- Mensaje de bienvenida (se llena con JavaScript) -->
         <p id="bienvenida"></p>
 
-        <!-- BUSCADOR: Campo para buscar productos en tiempo real -->
         <input type="text" id="buscador" placeholder="Buscar producto..." onkeyup="buscarProducto()">
 
-        <!-- FORMULARIO: Campos para agregar productos -->
-        <input type="text" id="producto" placeholder="Nombre del producto">
-        <input type="number" id="cantidad" placeholder="Cantidad">
-        <input type="number" id="precio" placeholder="Precio">
+        <!-- FORMULARIO (solo administrador) -->
+        <div id="seccionAdmin">
+            <input type="text" id="producto" placeholder="Nombre del producto">
+            <input type="number" id="cantidad" placeholder="Cantidad">
+            <input type="number" id="precio" placeholder="Precio">
 
-        <!-- Botón para guardar el producto (llama a la función guardarProducto()) -->
-        <button onclick="guardarProducto()">Guardar Producto</button>
+            <button onclick="guardarProducto()">Guardar Producto</button>
+            <p id="mensaje"></p>
+        </div>
 
-        <!-- Elemento para mostrar mensajes de error/éxito -->
-        <p id="mensaje"></p>
+        <!-- Mensaje (usuarios) -->
+        <div id="seccionUsuario" style="display:none;">
+            <p id="mensajeUsuario"></p>
+        </div>
 
-        <!-- Contadores de productos y valor total -->
         <h4>Total productos: <span id="totalProductos">0</span></h4>
         <h4>Total inventario: $<span id="totalValor">0</span></h4>
 
-        <!-- LISTA: Donde se muestran los productos guardados -->
         <ul id="listaProductos"></ul>
 
-        <!-- Botón para cerrar sesión -->
         <button onclick="cerrarSesion()">Cerrar sesión</button>
 
     </div>
 
-    <!-- Enlazar archivo JavaScript con las funciones -->
     <script src="panel.js"></script>
 
 </body>
 </html>
+

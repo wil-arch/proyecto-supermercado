@@ -7,15 +7,36 @@ if (!usuario) {
     window.location.href = "login.html";
 } else {
     document.getElementById("bienvenida").textContent =
-        "Bienvenido " + usuario.nombre + " 👋";
+        "Bienvenido " + usuario.nombre + " 🔐";
 }
 
 let editandoId = null;
 
+function esAdministrador() {
+    return usuario && usuario.rol === "administrador";
+}
+
+function mostrarControlesPorRol() {
+    const seccionAdmin = document.getElementById("seccionAdmin");
+    const seccionUsuario = document.getElementById("seccionUsuario");
+
+    if (esAdministrador()) {
+        seccionAdmin.style.display = "block";
+        seccionUsuario.style.display = "none";
+    } else {
+        seccionAdmin.style.display = "none";
+        seccionUsuario.style.display = "block";
+        document.getElementById("mensajeUsuario").textContent =
+            "Modo usuario: solo puedes comprar (sin editar ni eliminar).";
+    }
+}
+
 // ============================================
-// GUARDAR PRODUCTO
+// GUARDAR PRODUCTO (solo admin)
 // ============================================
 function guardarProducto() {
+    if (!esAdministrador()) return;
+
     let nombre = document.getElementById("producto").value.trim();
     let cantidad = document.getElementById("cantidad").value;
     let precio = document.getElementById("precio").value;
@@ -77,14 +98,25 @@ function mostrarProductos() {
     productos.forEach(p => {
         suma += p.cantidad * p.precio;
         let li = document.createElement("li");
+
+        const accionesAdmin = esAdministrador()
+            ? `
+                <div>
+                    <button onclick="editarProducto(${p.id})">Editar</button>
+                    <button onclick="eliminarProducto(${p.id})">Eliminar</button>
+                </div>
+              `
+            : `
+                <div>
+                    <button onclick="comprarProducto(${p.id})">Comprar</button>
+                </div>
+              `;
+
         li.innerHTML = `
             <strong>${p.nombre}</strong><br>
             Cantidad: ${p.cantidad}<br>
-            💲 Precio: $${p.precio}
-            <div>
-                <button onclick="editarProducto(${p.id})">Editar</button>
-                <button onclick="eliminarProducto(${p.id})">Eliminar</button>
-            </div>
+            📲 Precio: $${p.precio}
+            ${accionesAdmin}
         `;
         lista.appendChild(li);
     });
@@ -93,9 +125,11 @@ function mostrarProductos() {
 }
 
 // ============================================
-// EDITAR PRODUCTO
+// EDITAR PRODUCTO (solo admin)
 // ============================================
 function editarProducto(id) {
+    if (!esAdministrador()) return;
+
     let productos = JSON.parse(localStorage.getItem("productos")) || [];
     let producto = productos.find(p => p.id == id);
 
@@ -107,13 +141,45 @@ function editarProducto(id) {
 }
 
 // ============================================
-// ELIMINAR PRODUCTO
+// ELIMINAR PRODUCTO (solo admin)
 // ============================================
 function eliminarProducto(id) {
+    if (!esAdministrador()) return;
+
     if (!confirm("¿Eliminar producto?")) return;
 
     let productos = JSON.parse(localStorage.getItem("productos")) || [];
     productos = productos.filter(p => p.id != id);
+
+    localStorage.setItem("productos", JSON.stringify(productos));
+    mostrarProductos();
+}
+
+// ============================================
+// COMPRAR PRODUCTO (usuario/admin, sin edición)
+// - Para simplificar: reduce la cantidad en 1.
+// ============================================
+function comprarProducto(id) {
+    if (!usuario) return;
+
+    // Tanto usuario como admin pueden comprar; pero el usuario no puede editar/eliminar.
+    let productos = JSON.parse(localStorage.getItem("productos")) || [];
+    let producto = productos.find(p => p.id == id);
+    if (!producto) return;
+
+    let cantidadActual = Number(producto.cantidad);
+    if (Number.isNaN(cantidadActual) || cantidadActual <= 0) return;
+
+    cantidadActual -= 1;
+
+    if (cantidadActual <= 0) {
+        productos = productos.filter(p => p.id != id);
+    } else {
+        productos = productos.map(p => {
+            if (p.id == id) return { ...p, cantidad: cantidadActual };
+            return p;
+        });
+    }
 
     localStorage.setItem("productos", JSON.stringify(productos));
     mostrarProductos();
@@ -133,9 +199,11 @@ function buscarProducto() {
 }
 
 // ============================================
-// LIMPIAR FORMULARIO
+// LIMPIAR FORMULARIO (solo admin)
 // ============================================
 function limpiarFormulario() {
+    if (!esAdministrador()) return;
+
     document.getElementById("producto").value = "";
     document.getElementById("cantidad").value = "";
     document.getElementById("precio").value = "";
@@ -153,7 +221,12 @@ function cerrarSesion() {
 // INICIAR
 // ============================================
 if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mostrarProductos);
+    document.addEventListener("DOMContentLoaded", () => {
+        mostrarControlesPorRol();
+        mostrarProductos();
+    });
 } else {
+    mostrarControlesPorRol();
     mostrarProductos();
 }
+
